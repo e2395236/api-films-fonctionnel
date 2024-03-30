@@ -2,3 +2,4 @@
 /logs
 .env
 /config/firestoreAccess.json
+db-config.json
