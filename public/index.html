@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Documentation</title>
+        <link rel="stylesheet" href="css/styles.css" />
+        <script src="js/script.js" defer></script>
+    </head>
+    <body>
+        <section>
+            <h1>API Films</h1>
+            <h2>Documentation</h2>
+            Cette API permet d'afficher, d'ajouter, de modifier et de supprimer des films de la base de données. Les
+            routes sont accessibles à partir de l'url suivante :
+            <a href="https://four1f-node-api.onrender.com/">https://four1f-node-api.onrender.com/</a>
+            <p>
+                <a href="https://github.com/max-lacasse-maisonneuve/41f-node-planterrarium/tree/api-films"
+                    >Lien vers le code Github</a
+                >
+            </p>
+        </section>
+        <section>
+            <h2>Routes</h2>
+            <h3>Récupérer la liste de tous les films</h3>
+            <p>GET films/</p>
+            <p><a href="https://four1f-node-api.onrender.com/films">https://four1f-node-api.onrender.com/films</a></p>
+            <h4>Paramètres possibles :</h4>
+            <p>
+                <a href="https://four1f-node-api.onrender.com/films?limit=2&orderBy=annee&orderDirection=desc"
+                    >https://four1f-node-api.onrender.com/films?limit=2&orderBy=annee&orderDirection=desc</a
+                >
+            </p>
+            <div>
+                <strong>orderBy</strong>
+                <ul>
+                    <li>titre</li>
+                    <li>description</li>
+                    <li>annee</li>
+                    <li>realisation</li>
+                </ul>
+            </div>
+            <div>
+                <strong>orderDirection</strong>
+                <ul>
+                    <li>asc</li>
+                    <li>desc</li>
+                </ul>
+            </div>
+
+            <div>
+                <strong>limit</strong>
+                <ul>
+                    <li>Un nombre entier</li>
+                </ul>
+            </div>
+
+            <h3>Récupérer un film spécifique</h3>
+            <p>GET films/{id}</p>
+            <p>
+                <a href="https://four1f-node-api.onrender.com/films/{id}"
+                    >https://four1f-node-api.onrender.com/films/{id}</a
+                >
+            </p>
+            <p>Paramètre requis : id (l'identifiant du film à récupérer).</p>
+
+            <h3>Ajouter un nouveau film</h3>
+            <p>POST films/</p>
+            <p><a href="https://four1f-node-api.onrender.com/films">https://four1f-node-api.onrender.com/films</a></p>
+            <h4>Paramètres requis : un objet film dans le corps de la requête.</h4>
+            <code>
+                const film = {
+                <span>
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;titre: 'Titre du film',
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;description: 'Description du film',
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;annee: 2020,
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;realisation: 'Nom du réalisateur',
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;genre: ['Genre 1', 'Genre 2'],
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;titreVignette: 'Titre de la vignette',
+                    <br />
+                </span>
+                };
+            </code>
+
+            <h3>Modifier un film existant</h3>
+            <p>PUT /films/{id}</p>
+            <p>
+                <a href="https://four1f-node-api.onrender.com/films/{id}"
+                    >https://four1f-node-api.onrender.com/films/{id}</a
+                >
+            </p>
+            <h4>
+                Paramètres requis : id (l'identifiant du film à modifier) et un objet film dans le corps de la requête.
+            </h4>
+            <code>
+                const film = {
+                <span>
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;titre: 'Titre du film',
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;description: 'Description du film',
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;annee: 2020,
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;realisation: 'Nom du réalisateur',
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;genre: ['Genre 1', 'Genre 2'],
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;titreVignette: 'Titre de la vignette',
+                    <br />
+                </span>
+                };
+            </code>
+
+            <h3>Supprimer un film</h3>
+            <p>DELETE films/{id}</p>
+            <p>
+                <a href="https://four1f-node-api.onrender.com/films/{id}"
+                    >https://four1f-node-api.onrender.com/films/{id}</a
+                >
+            </p>
+            <p>Paramètre requis : id (l'identifiant du film à supprimer).</p>
+        </section>
+
+        <section>
+            <h2>Routes pour les utilisateurs</h2>
+
+            <h3>Récupérer la liste des utilisateurs</h3>
+            <p>GET /utilisateurs</p>
+            <p>
+                <a href="https://four1f-node-api.onrender.com/utilisateurs"
+                    >https://four1f-node-api.onrender.com/utilisateurs</a
+                >
+            </p>
+            <p>Cette route permet de récupérer la liste des utilisateurs.</p>
+            <p>Cette route est protégée. Il faut être connecté et avoir un jeton valide pour y accéder.</p>
+
+            <h3>Inscription d'un nouvel utilisateur</h3>
+            <p>POST /inscription</p>
+            <p>
+                <a href="https://four1f-node-api.onrender.com/utilisateurs/inscription"
+                    >https://four1f-node-api.onrender.com/utilisateurs/inscription</a
+                >
+            </p>
+            <h4>Paramètres requis : un objet utilisateur dans le corps de la requête.</h4>
+            <code>
+                const utilisateur = {
+                <span>
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;courriel: 'test@test.com',
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;mdp: '12345',
+                    <br />
+                </span>
+                };
+            </code>
+            <p>
+                Cette route permet de créer un nouvel utilisateur. Elle vérifie d'abord si l'email fourni est déjà
+                utilisé. Si ce n'est pas le cas, elle crée un nouvel utilisateur avec l'email et le mot de passe
+                fournis, puis renvoie les informations de l'utilisateur avec un jeton. Le jeton doit être utilisé pour
+                accéder aux routes protégées en passant le jeton dans le header de la requête avec l'attribut
+                Authorization. Ex: Authorization: Bearer {le jeton}
+            </p>
+
+            <h3>Connexion d'un utilisateur</h3>
+            <p>POST /connexion</p>
+            <p>
+                <a href="https://four1f-node-api.onrender.com/utilisateurs/connexion"
+                    >https://four1f-node-api.onrender.com/utilisateurs/connexion</a
+                >
+            </p>
+            <h4>Paramètres requis : un objet utilisateur dans le corps de la requête.</h4>
+            <code>
+                const utilisateur = {
+                <span>
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;courriel: 'test@test.com',
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;mdp: '12345',
+                    <br />
+                </span>
+                };
+            </code>
+            <p>
+                Cette route permet à un utilisateur de se connecter. Elle vérifie d'abord si l'email fourni existe dans
+                la base de données. Si c'est le cas, elle compare le mot de passe fourni avec le mot de passe hashé
+                stocké dans la base de données. Si les mots de passe correspondent, elle renvoie les informations de
+                l'utilisateur avec un jeton. Le jeton doit être utilisé pour accéder aux routes protégées en passant le
+                jeton dans le header de la requête avec l'attribut Authorization. Ex: Authorization: Bearer {le jeton}
+            </p>
+            <p>Pour tester: admin@email.com - 12345</p>
+        </section>
+    </body>
+</html>
