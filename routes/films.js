@@ -4,6 +4,22 @@ const db = require("../config/db.js");
 const auth = require("../middlewares/auth.js");
 const { check, validationResult } = require("express-validator");
 
+
+/* Ajouter des films à partir de data/filmsDepart.js*/
+const filmsDepart = require("../data/filmsDepart.js");
+router.post("/ajouter-films", async (req, res) => {
+    try {
+        const films = filmsDepart;
+        const filmsRef = await db.collection("Films").add(films);
+        res.status(201).json({ id: filmsRef.id, ...films });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+})
+
+
+
 /**
  * Cette route permet de récupérer la liste des films
  * @route GET /films

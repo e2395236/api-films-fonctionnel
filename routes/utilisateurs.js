@@ -7,6 +7,22 @@ const auth = require("../middlewares/auth.js");
 const { check, validationResult } = require("express-validator");
 
 
+// Route pour lister tous les utilisateurs
+router.get('/', async (req, res) => {
+    try {
+        const docRef = await db.collection("utilisateurs").get();
+        const utilisateurs = [];
+        docRef.forEach(doc => {
+            utilisateurs.push({ id: doc.id, ...doc.data() });
+        });
+        res.json(utilisateurs);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Erreur lors de la récupération des utilisateurs.");
+    }
+});
+
+
 
 // Route pour l'inscription d'un nouvel utilisateur
 router.post(
@@ -22,6 +38,7 @@ router.post(
         }),
     ],
     async (req, res) => {
+        console.log(req.body); 
         try {
             const validation = validationResult(req);
             if (!validation.isEmpty()) {

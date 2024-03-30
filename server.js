@@ -8,7 +8,7 @@ require("dotenv").config();
 
 // ===== INITIALISATION DU SERVEUR
 const app = express();
-const port = process.env.port || 3301;
+const port = process.env.PORT || 3301;  
 
 app.use(cors());
 app.use(express.json());
@@ -20,18 +20,13 @@ app.set("view engine", "mustache");
 app.engine("mustache", mustacheExpress());
 
 // ===== MIDDLEWARES
-// Ajoute un dossier public pour les fichiers statiques (css, js, images).
-// Doit être défini avant les routes
 app.use(express.static(path.join(__dirname, "public")));
 
 // ===== ROUTES
-// Toutes les routes non statiques doivent être définies après les middlewares
 app.use("/films", require("./routes/films.js"));
 app.use("/utilisateurs", require("./routes/utilisateurs.js"));
 
 // ===== PAGE 404
-// Cette route doit être définie en dernier pour que les autres routes soient testées en premier
-// Si aucune route n'est trouvée, alors on affiche la page 404
 app.use((req, res) => {
     res.setHeader("Content-Type", "text/html");
     res.statusCode = 404;
